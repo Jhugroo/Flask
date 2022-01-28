@@ -1,9 +1,11 @@
-from flask import Flask, render_template
+from flask import *
+import sqlite3, hashlib, os
+from werkzeug.utils import secure_filename
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return 'main'
+	return render_template('layout.html')
 
 @app.route('/pti-bebe')
 def bebe():
@@ -21,6 +23,6 @@ def pti():
 def newpage():
    	return 'hi choco chip'
 
-
 if __name__ == '__main__':
 	app.run()
+
