@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return render_template('first.html',show_categories=True)
+	return render_template('index.html',show_categories=True)
 
 @app.route('/cart')
 def cart():
