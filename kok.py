@@ -5,44 +5,34 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return render_template('index.html',show_categories=True)
+	return render_template('front/homepage/index.html',show_categories=True, title = 'KOK main page')
 
 @app.route('/cart')
 def cart():
-	return render_template('cart.html')
+	return render_template('front/cart.html', title = 'KOK cart page')
 
 @app.route('/contact')
 def contact():
-	return render_template('contact.html')
+	return render_template('front/contact.html', title = 'KOK contact page')
 
 @app.route('/detail')
 def detail():
-	return render_template('detail.html')
+	return render_template('front/shop/detail.html', title = 'KOK detail page')
 
 @app.route('/checkout')
 def checkout():
-	return render_template('checkout.html')
+	return render_template('front/checkout.html')
 
 @app.route('/shop')
 def shop():
-	return render_template('shop.html')
+	return render_template('front/shop/shop.html', title = 'KOK shop page')
 
-@app.route('/pti-bebe')
-def bebe():
-	return 'hi pti pti'
+@app.route('/admin')
+def admin():
+	return render_template('admin/index.html')
 
-@app.route('/user/<name>/<name2>')
-def user(name,name2):
-    return render_template('first.html', name=name,name2=name2)
-
-@app.route('/pti-bebes-page')
-def pti():
-   	return 'hi choco chip'
-
-@app.route('/new-page')
-def newpage():
-   	return 'hi choco chip'
-
+@app.route('/shion')
+def shion():
+	return render_template('shion/index.html', title = 'KOK shop page')
 if __name__ == '__main__':
 	app.run()
-
