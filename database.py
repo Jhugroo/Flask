@@ -21,6 +21,7 @@ conn.execute('''CREATE TABLE products
   price REAL,
   description TEXT,
   image TEXT,
+  res TEXT,
   stock INTEGER,
   categoryId INTEGER,
   FOREIGN KEY(categoryId) REFERENCES categories(categoryId)
