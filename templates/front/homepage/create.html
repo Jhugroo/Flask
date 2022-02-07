@@ -3,7 +3,8 @@
 {% endif %}
 <form action="{{url_for('product')}}" method="post" enctype="multipart/form-data" >
     <input type="text" placeholder="name" id="name" name="name" required/><br><br>
+    <input type="number" placeholder="starting price" id="price" name="price" required/><br><br>
+    <input type="number" placeholder="old price" id="oldprice" name="oldprice" required/><br><br>
     <input type="file" id="image" name="image"><br><br>
     <input type="submit" value="create">
-
 </form>

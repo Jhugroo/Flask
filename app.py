@@ -35,9 +35,9 @@ def product():
 	name = request.form.get('name')
 	if(image):
 		res = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 7))
-		price = 324234
+		price = request.form.get('price')
 		description = "sdfdsfwsefeswfsfsfe"
-		stock = 23
+		stock = request.form.get('oldprice')
 		categoryId = 14
 		if image and allowed_file(image.filename):
 			filename = secure_filename(image.filename)
@@ -46,7 +46,7 @@ def product():
 			imagehash = res+imagename
 			with sqlite3.connect('database.db') as conn:
 				cur = conn.cursor()
-				cur.execute('INSERT INTO products (name, price, description, image, res, stock, categoryId) VALUES (?, ?, ?, ?,?, ?, ?)', (name, price, description, imagename, imagehash, stock, categoryId))
+				cur.execute('INSERT INTO products (name, price, description, code, res, stock, categoryId) VALUES (?, ?, ?, ?,?, ?, ?)', (name, price, description, res, imagehash, stock, categoryId))
 				conn.commit()
 	return render_template('front/homepage/create.html')
 
@@ -58,9 +58,13 @@ def cart():
 def contact():
 	return render_template('front/contact.html', title = 'KOK contact page')
 
-@app.route('/detail')
-def detail():
-	return render_template('front/shop/detail.html', title = 'KOK detail page')
+@app.route('/detail/<code>')
+def detail(code):
+	with sqlite3.connect('database.db') as conn:
+		cur = conn.cursor()
+		cur.execute("SELECT * FROM products where code = ?",(code,))
+		product = cur.fetchall()
+	return render_template('front/shop/detail.html', title = 'KOK detail page',product=product)
 
 @app.route('/checkout')
 def checkout():
