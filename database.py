@@ -20,20 +20,31 @@ conn.execute('''CREATE TABLE products
   name TEXT,
   price REAL,
   description TEXT,
-  code TEXT,
-  res TEXT,
+ code TEXT,
+  link TEXT,
   stock INTEGER,
+  thumbnailImage TEXT,
   categoryId INTEGER,
   FOREIGN KEY(categoryId) REFERENCES categories(categoryId)
   )''')
-conn.execute('''CREATE TABLE kart
+
+conn.execute('''CREATE TABLE cart
   (userId INTEGER,
   productId INTEGER,
   FOREIGN KEY(userId) REFERENCES users(userId),
   FOREIGN KEY(productId) REFERENCES products(productId)
   )''')
+
 conn.execute('''CREATE TABLE categories
   (categoryId INTEGER PRIMARY KEY,
   name TEXT
   )''')
+
+conn.execute('''CREATE TABLE images
+  (imageId INTEGER PRIMARY KEY,
+  imagehash TEXT,
+  productId INTEGER,
+  FOREIGN KEY(productId) REFERENCES products(productId)
+  )''')
+
 conn.close()

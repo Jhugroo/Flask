@@ -1,0 +1,45 @@
+<div class="col-lg-4">
+<div class="form-wrapper pt-80">
+    <div class="row ">
+        <div class="col-xl-12">
+            <div class="small-tittle mb-30">
+                <h2>Checkout</h2>
+            </div>
+        </div>
+    </div>
+    <form action="{{url_for('charge')}}" method="post" enctype="multipart/form-data" >
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-box user-icon mb-15">Product: {{product[1]}}
+                </div>
+                <div class="form-box user-icon mb-15">Price: ${{product[2]}}
+                </div>
+                 <input type="hidden" id="productCode" name="productCode" value="{{product[4]}}"/>
+                <div class="form-box user-icon mb-15">
+                    <input type="text" placeholder="street/address" id="street_address"/>
+                </div>
+                <div class="form-box user-icon mb-15">
+                    <input type="text" placeholder="town/city" id="town_city"/>
+                </div>
+                <div class="form-box user-icon mb-15">
+                    <input type="text" placeholder="state country" id="state_country"/>
+                </div>
+                <div class="form-box user-icon mb-15">
+                    <input type="text" placeholder="postcode" id="postcode"/>
+                </div>
+                <div class="form-box user-icon mb-15">
+                    <input type="text" placeholder="phone" id="phone"/>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ key }}"
+                        data-description=" Buy {{product[1]}}"
+                        data-amount="{{product[2] * 100}}"
+                        data-locale="auto">
+                    </script>
+                    </div>
+            </div>
+        </div>
+    </form> 
+</div>
